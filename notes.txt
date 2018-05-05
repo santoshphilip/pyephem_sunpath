@@ -1,0 +1,5 @@
+2018-05-05
+----------
+
+install ipython in virtualenv
+python2 -m pip install ipython
