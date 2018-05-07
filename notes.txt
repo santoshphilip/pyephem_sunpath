@@ -1,3 +1,8 @@
+2018-05-06
+----------
+- more info in README.rst - DOME
+- write sunposUTC()
+
 2018-05-05
 ----------
 
