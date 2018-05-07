@@ -1,6 +1,7 @@
 """Calculate sun path and sun position using pyephen"""
 
 import ephem
+import math
 
 
 def sunposUTC(lon, lat, timeUTC):
@@ -21,8 +22,7 @@ def sunposUTC(lon, lat, timeUTC):
     -------
     (str, str)
         Sun position as (altitude, azimuth)
-        where altitude and azimuth are strings in the format
-        `degree:minutes:seconds` - ('70:08:39.2', '122:11:26.4')
+        where altitude and azimuth in degrees - (70.14421911552256, 122.1906772325591)
 
     """
     gatech = ephem.Observer()
@@ -36,7 +36,7 @@ def sunposUTC(lon, lat, timeUTC):
     # https://www.esrl.noaa.gov/gmd/grad/solcalc/azel.html
     # 70.22, 122.1
     # May be due to time zone
-    return str(sun.alt), str(sun.az)
+    return math.degrees(sun.alt), math.degrees(sun.az)
 
 
 # from
