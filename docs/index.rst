@@ -1,5 +1,5 @@
 Welcome to pyephem_sunpath's documentation!
-======================================
+===========================================
 
 .. toctree::
    :maxdepth: 2

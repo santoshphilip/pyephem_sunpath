@@ -20,6 +20,14 @@ pyephem\_sunpath.pyephem\_sunpath module
     :undoc-members:
     :show-inheritance:
 
+pyephem\_sunpath.sunpath module
+-------------------------------
+
+.. automodule:: pyephem_sunpath.sunpath
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

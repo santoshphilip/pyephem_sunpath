@@ -38,7 +38,8 @@ Pyephem_sunpath uses the a small part of pyephem to calculate the sun position a
 Features
 --------
 
-- TODO: The function **sunposUTC()** calculates the sun position (in altitude and azimuth) using the UTC time.
+- The function **sunposUTC()** calculates the sun position (in altitude and azimuth) using the UTC time.
+- TODO: decimal2degreeminute(), degreeminute2decimal()
 
 Credits
 -------
