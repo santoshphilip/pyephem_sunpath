@@ -7,7 +7,7 @@ import pytest
 
 from click.testing import CliRunner
 
-from pyephem_sunpath import pyephem_sunpath
+# from pyephem_sunpath import pyephem_sunpath
 from pyephem_sunpath import cli
 
 

@@ -18,6 +18,21 @@ TODO :
 - release on readthedocs
 - release on pypi
 
+see for long lat or lat long:
+- https://en.wikipedia.org/wiki/ISO_6709
+- https://gis.stackexchange.com/questions/6037/latlon-or-lonlat-whats-the-right-way-to-display-coordinates-and-inputs
+- https://stackoverflow.com/questions/18636564/lat-long-or-long-lat
+
+Have a pure radians version - Where everything works the way radians does
+
+# First time
+python3 -m venv ~/venvs/py3pyephem_sunpath
+source ~/venvs/py3pyephem_sunpath/bin/activate
+
+# other times
+source ~/venvs/py3pyephem_sunpath/bin/activate
+
+
 2018-05-06
 ----------
 - more info in README.rst - DOME

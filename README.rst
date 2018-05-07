@@ -29,11 +29,11 @@ Calculate sunpath using pyephem
 Introduction
 ------------
 
-**Pyephem_sunpath** is built upon pyephem_ an astronomical comutation package. From the pyephem_ website we have:
+**Pyephem_sunpath** is built upon pyephem_ an astronomical computation package. From the pyephem_ website we have:
 
     "**PyEphem** provides basic astronomical computations for the Python programming language. Given a date and location on the Earth’s surface, it can compute the positions of the Sun and Moon, of the planets and their moons, and of any asteroids, comets, or earth satellites whose orbital elements the user can provide. Additional functions are provided to compute the angular separation between two objects in the sky, to determine the constellation in which an object lies, and to find the times at which an object rises, transits, and sets on a particular day."
-    
-Pyephem_sunpath uses the a small part of pyephem to calculate the sun position and sun path for any location on earth. The big advantage of using pyephem, is that we will get a high degree of accuracy in the calculations.    
+
+Pyephem_sunpath uses the a small part of pyephem to calculate the sun position and sun path for any location on earth. The big advantage of using pyephem, is that we will get a high degree of accuracy in the calculations.
 
 Features
 --------
