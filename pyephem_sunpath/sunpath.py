@@ -19,7 +19,7 @@ def sunposUTC(lon, lat, timeUTC):
 
     Returns
     -------
-    tuple
+    (str, str)
         Sun position as (altitude, azimuth)
         where altitude and azimuth are strings in the format
         `degree:minutes:seconds` - ('70:08:39.2', '122:11:26.4')

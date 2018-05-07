@@ -7,13 +7,16 @@ To get API documentation do the following:
 - /Users/santoshphilip/Documents/coolshadow/github/pyephem_sunpath
 
 set up for numpy documentation style
-- examples: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html
 - add 'sphinx.ext.napoleon' to Sphinx extension in docs/conf.py
 - now extensions look like this::
     extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode',
         'sphinx.ext.napoleon',
     ]
+- examples of numpy docs: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html
 
+TODO :
+- release on readthedocs
+- release on pypi
 
 2018-05-06
 ----------
