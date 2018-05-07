@@ -12,15 +12,15 @@ def sunposUTC(lon, lat, timeUTC):
     Parameters
     ----------
     lon : str
-        longitude in decimals as a string - '-84.39733'
+        longitude in decimals as a string - '-84.39733' West is -ve
     lat : str
-        latitude in decimals as a string - '33.775867'
+        latitude in decimals as a string - '33.775867' North is +ve
     timeUTC: str
         date and time in the format '1984/5/30 16:22:56'. Time is **not** local time, but in UTC
 
     Returns
     -------
-    (str, str)
+    (float, float)
         Sun position as (altitude, azimuth)
         where altitude and azimuth in degrees - (70.14421911552256, 122.1906772325591)
 

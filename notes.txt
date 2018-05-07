@@ -33,6 +33,10 @@ source ~/venvs/py3pyephem_sunpath/bin/activate
 source ~/venvs/py3pyephem_sunpath/bin/activate
 
 
+more on UTC, timezones,
+https://www.e-education.psu.edu/eme810/node/530
+https://www.britannica.com/science/solar-time#ref144523
+
 2018-05-06
 ----------
 - more info in README.rst - DOME
