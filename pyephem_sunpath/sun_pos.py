@@ -1,4 +1,4 @@
-# from pyephem_sunpath.sunpath
+    # from pyephem_sunpath.sunpath
 from sunpath import sunposUTC
 import math
 import datetime
@@ -26,9 +26,31 @@ def sun_pos(timestep,lat,lon,mer,xyz=True,year=2018,dst=False):
     else:
         return alt,azm
 
-timestep = (5, 23, 12)
+# Denver Colorado from https://www.esrl.noaa.gov/gmd/grad/solcalc/azel.html
+timestep = (5, 23, 13)
 lat = 40.125
 lon = 105.23694444444445
-mer = -7 * 15
+mer = 7 * 15
 
-print sun_pos(timestep, lat, lon, mer, xyz=False)
+alt, azm =  sun_pos(timestep, lat, lon, mer, xyz=False)
+print azm, alt
+# 38.9440224487 66.4587993035
+print 180. + azm, alt
+# 218.944022449 66.4587993035
+# from https://www.esrl.noaa.gov/gmd/grad/solcalc/azel.html
+# 218.93 66.46
+# has a slight mismatch. Accuracy is OK for Stephan's purposes.
+
+# from https://www.esrl.noaa.gov/gmd/grad/solcalc/
+timestep = (5, 23, 15, 49, 24)
+lat = 39.833
+lon = 98.583
+mer = 6 * 15
+
+alt, azm =  sun_pos(timestep, lat, lon, mer, xyz=False)
+print azm, alt
+# 80.6560833326 43.8225073752
+print 180. + azm, alt
+# 260.656083333 43.8225073752
+# from https://www.esrl.noaa.gov/gmd/grad/solcalc/
+# 260.65 43.83
