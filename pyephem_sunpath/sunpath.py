@@ -3,6 +3,8 @@
 import ephem
 import math
 
+# from
+# http://rhodesmill.org/pyephem/tutorial.html#computations-for-particular-observers
 
 def sunposUTC(lon, lat, timeUTC):
     """Calculate sun position
@@ -26,6 +28,10 @@ def sunposUTC(lon, lat, timeUTC):
 
     """  # noqa: E501
     gatech = ephem.Observer()
+    # print '-' * 15
+    # print gatech.temp, "Deg C"
+    # print gatech.pressure, "mBar"
+    # print '-' * 15
     gatech.lon, gatech.lat = lon, lat
     gatech.date = timeUTC
     sun = ephem.Sun()
