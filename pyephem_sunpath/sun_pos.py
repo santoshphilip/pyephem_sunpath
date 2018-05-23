@@ -1,4 +1,5 @@
-from pyephem_sunpath.sunpath import sunposUTC
+# from pyephem_sunpath.sunpath
+from sunpath import sunposUTC
 import math
 import datetime
 
@@ -24,3 +25,10 @@ def sun_pos(timestep,lat,lon,mer,xyz=True,year=2018,dst=False):
         return calc_xyz(alt,azm)
     else:
         return alt,azm
+
+timestep = (5, 23, 12)
+lat = 40.125
+lon = 105.23694444444445
+mer = -7 * 15
+
+print sun_pos(timestep, lat, lon, mer, xyz=False)

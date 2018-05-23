@@ -30,7 +30,7 @@ def sunposUTC(lon, lat, timeUTC):
     gatech.date = timeUTC
     sun = ephem.Sun()
     sun.compute(gatech)
-    print("%s %s" % (sun.alt, sun.az))
+    # print("%s %s" % (sun.alt, sun.az))
     # # 70:08:39.2 122:11:26.4
     # slight mismatch iwth NOAA web site
     # https://www.esrl.noaa.gov/gmd/grad/solcalc/azel.html
