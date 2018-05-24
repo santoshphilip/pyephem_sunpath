@@ -3,9 +3,9 @@
 import ephem
 import math
 
+
 # from
 # http://rhodesmill.org/pyephem/tutorial.html#computations-for-particular-observers
-
 def sunposUTC(lon, lat, timeUTC):
     """Calculate sun position
 

@@ -1,30 +1,31 @@
-    # from pyephem_sunpath.sunpath
 from sunpath import sunposUTC
 import math
 import datetime
 
 
-def calc_xyz(alt,az):
-    x = math.sin((az-180)*math.pi/180)
-    y = math.cos((az-180)*math.pi/180)
-    z = math.tan(alt*math.pi/180)
-    l = (x**2+y**2+z**2)**.5
-    return (x/l,y/l,z/l)
+def calc_xyz(alt, az):
+    """calculate the direction vector of tha alt, azm"""
+    x_val = math.sin((az - 180) * math.pi / 180)
+    y_val = math.cos((az - 180) * math.pi / 180)
+    z_val = math.tan(alt * math.pi / 180)
+    length = (x_val ** 2 + y_val ** 2 + z_val ** 2) ** .5
+    return (x_val / length,  y_val / length, z_val / length)
 
 
-def sun_pos(timestep,lat,lon,mer,xyz=True,year=2018,dst=False):
-    """"""
-    tz = mer/15.
+def sun_pos(timestep, lat, lon, mer, xyz=True, year=2018, dst=False):
+    """Calculate sun position for Radiance inputs"""
+    tz = mer / 15.
     if dst:
         tz += 1
-    dt = datetime.datetime(year,*timestep) + datetime.timedelta(hours=tz)
+    dt = datetime.datetime(year, * timestep) + datetime.timedelta(hours=tz)
     timeUTC = dt.strftime('%Y/%m/%d %H:%M:%S')
-    alt,azm = sunposUTC(str(-lon),str(lat),timeUTC)
+    alt, azm = sunposUTC(str(-lon), str(lat), timeUTC)
     azm = azm - 180
     if xyz:
-        return calc_xyz(alt,azm)
+        return calc_xyz(alt, azm)
     else:
-        return alt,azm
+        return alt, azm
+
 
 # Denver Colorado from https://www.esrl.noaa.gov/gmd/grad/solcalc/azel.html
 timestep = (5, 23, 13)
@@ -32,7 +33,7 @@ lat = 40.125
 lon = 105.23694444444445
 mer = 7 * 15
 
-alt, azm =  sun_pos(timestep, lat, lon, mer, xyz=False)
+alt, azm = sun_pos(timestep, lat, lon, mer, xyz=False)
 print azm, alt
 # 38.9440224487 66.4587993035
 print 180. + azm, alt
@@ -47,7 +48,7 @@ lat = 39.833
 lon = 98.583
 mer = 6 * 15
 
-alt, azm =  sun_pos(timestep, lat, lon, mer, xyz=False)
+alt, azm = sun_pos(timestep, lat, lon, mer, xyz=False)
 print azm, alt
 # 80.6560833326 43.8225073752
 print 180. + azm, alt
