@@ -4,7 +4,8 @@ import datetime
 
 
 def calc_xyz(alt, az):
-    """calculate the direction vector of tha alt, azm"""
+    """calculate the direction vector for the alt, azm"""
+    az = 180. + az
     x_val = math.sin((az - 180) * math.pi / 180)
     y_val = math.cos((az - 180) * math.pi / 180)
     z_val = math.tan(alt * math.pi / 180)
@@ -55,3 +56,9 @@ print 180. + azm, alt
 # 260.656083333 43.8225073752
 # from https://www.esrl.noaa.gov/gmd/grad/solcalc/
 # 260.65 43.83
+
+xx, yy, zz = sun_pos(timestep, lat, lon, mer, xyz=True)
+print alt, azm
+print alt, 180. + azm
+print xx, yy, zz
+print xx ** 2 + yy ** 2 + zz ** 2

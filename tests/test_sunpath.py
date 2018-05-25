@@ -1,6 +1,7 @@
 """py.test for sunpath functions"""
 
 from pyephem_sunpath import sunpath
+from pyephem_sunpath.pytest_helpers import almostequal
 
 
 def test_sunposUTC():
@@ -14,3 +15,15 @@ def test_sunposUTC():
     for lon, lat, timeUTC, expected in data:
         result = sunpath.sunposUTC(lon, lat, timeUTC)
         assert result == expected
+
+
+def test_unitvector_sunpos():
+    """py.test for unitvector_sunpos"""
+    data = ((43.8225073752, 260.656083333, (-0.711915254482, -0.117140973417, 0.692426647944)), # alt, az, xyz
+    )
+    for alt, az, xyz in data:
+        result = sunpath.unitvector_sunpos(alt, az)
+        print result
+        print xyz
+        for rval, xyzval in zip(result, xyz):
+            assert almostequal(rval, xyzval)

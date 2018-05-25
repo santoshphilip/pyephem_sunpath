@@ -2,6 +2,7 @@
 
 import ephem
 import math
+import datetime
 
 
 # from
@@ -43,6 +44,31 @@ def sunposUTC(lon, lat, timeUTC):
     # 70.22, 122.1
     # May be due to time zone
     return math.degrees(sun.alt), math.degrees(sun.az)
+
+
+def unitvector_sunpos(alt, az):
+    """calculate the direction vector for the alt, azm"""
+    x_val = math.sin((az - 180) * math.pi / 180)
+    y_val = math.cos((az - 180) * math.pi / 180)
+    z_val = math.tan(alt * math.pi / 180)
+    length = (x_val ** 2 + y_val ** 2 + z_val ** 2) ** .5
+    return (x_val / length,  y_val / length, z_val / length)
+
+
+def sun_pos(timestep, lat, lon, mer, xyz=True, year=2018, dst=False):
+    """Calculate sun position for Radiance inputs"""
+    tz = mer / 15.
+    if dst:
+        tz += 1
+    dt = datetime.datetime(year, * timestep) + datetime.timedelta(hours=tz)
+    timeUTC = dt.strftime('%Y/%m/%d %H:%M:%S')
+    alt, azm = sunposUTC(str(-lon), str(lat), timeUTC)
+    azm = azm - 180
+    if xyz:
+        return unitvector_sunpos(alt, azm)
+    else:
+        return alt, azm
+
 
 # Sample of documentation
 #
