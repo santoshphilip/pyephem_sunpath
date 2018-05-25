@@ -75,8 +75,9 @@ def sunpos(thetime, lat, lon, tz, dst=False):
     """Calculate sun position for Radiance inputs"""
     if dst:
         tz -= 1
-    dt = datetime.datetime(* thetime) + datetime.timedelta(hours=tz)
+    dt = datetime.datetime(* thetime) - datetime.timedelta(hours=tz)
     timeUTC = dt.strftime('%Y/%m/%d %H:%M:%S')
+    print timeUTC
     alt, azm = sunposUTC(str(lon), str(lat), timeUTC)
     return alt, azm
 

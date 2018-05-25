@@ -79,7 +79,7 @@ print '-' * 5
 timestep = (2018, 5, 23, 13)
 lat = 40.125
 lon = -105.23694444444445
-tzone = 7
+tzone = -7
 
 alt, azm = sunpos(timestep, lat, lon, tzone, dst=False)
 print alt, azm
@@ -87,6 +87,7 @@ alt, azm = sunpos(timestep, lat, lon, tzone, dst=True)
 print alt, azm
 print '-' * 5
 
+# New Delhi
 timestep = (5, 23, 13)
 lat = 28.6
 lon = -77.2
@@ -97,6 +98,16 @@ print azm, alt
 # 80.6560833326 43.8225073752
 print 180. + azm, alt
 
+# New Delhi
+timestep = (2018, 5, 23, 13)
+lat = 28.6
+lon = 77.2
+tz = 5.5
+
+alt, azm = sunpos(timestep, lat, lon, tz, dst=False)
+print azm, alt
+# 80.6560833326 43.8225073752
+# print 180. + azm, alt
 
 # sunpos_utc
 # sunpos_radiance

@@ -74,19 +74,19 @@ def test_sunpos_radiance():
             assert almostequal(rval, expval)
 
 
-# def test_sunpos():
-#     """py.test for sunpos"""
-#     data = (
-#         ((2018, 5, 23, 13), 40.125, -105.23694444444445,
-#             7, False,
-#             (66.4587993035, 218.944022449)),
-#         # thetime, lat, lon, tz, dst, expected
-#         ((2018, 5, 23, 13), 40.125, -105.23694444444445,
-#             7, True,
-#             (70.5494474088, 181.603391917)),
-#         # thetime, lat, lon, tz, dst, expected
-#     )
-#     for thetime, lat, lon, tz, dst, expected in data:
-#         result = sunpath.sunpos(thetime, lat, lon, tz, dst)
-#         for rval, expval in zip(result, expected):
-#             assert almostequal(rval, expval)
+def test_sunpos():
+    """py.test for sunpos"""
+    data = (
+        ((2018, 5, 23, 13), 40.125, -105.23694444444445,
+            -7, False,
+            (66.4587993035, 218.944022449)),
+        # thetime, lat, lon, tz, dst, expected
+        ((2018, 5, 23, 13), 40.125, -105.23694444444445,
+            7, True,
+            (70.5494474088, 181.603391917)),
+        # thetime, lat, lon, tz, dst, expected
+    )
+    for thetime, lat, lon, tz, dst, expected in data:
+        result = sunpath.sunpos(thetime, lat, lon, tz, dst)
+        for rval, expval in zip(result, expected):
+            assert almostequal(rval, expval)
