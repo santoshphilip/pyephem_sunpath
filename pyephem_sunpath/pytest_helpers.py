@@ -1,7 +1,8 @@
 """helpers for pytest"""
 
 # taken from python's unit test
-# may be covered by Python's license 
+# may be covered by Python's license
+
 
 def almostequal(first, second, places=7, printit=True):
     """docstring for almostequal"""

@@ -46,8 +46,9 @@ def sunposUTC(lon, lat, timeUTC):
     return math.degrees(sun.alt), math.degrees(sun.az)
 
 
-def unitvector_sunpos(alt, az):
+def calc_xyz(alt, az):
     """calculate the direction vector for the alt, azm"""
+    # az = 180. + az
     x_val = math.sin((az - 180) * math.pi / 180)
     y_val = math.cos((az - 180) * math.pi / 180)
     z_val = math.tan(alt * math.pi / 180)
@@ -55,20 +56,29 @@ def unitvector_sunpos(alt, az):
     return (x_val / length,  y_val / length, z_val / length)
 
 
-def sun_pos(timestep, lat, lon, mer, xyz=True, year=2018, dst=False):
+def sunpos_radiance(thetime, lat, lon, mer, xyz=True, year=2018, dst=False):
     """Calculate sun position for Radiance inputs"""
     tz = mer / 15.
     if dst:
-        tz += 1
-    dt = datetime.datetime(year, * timestep) + datetime.timedelta(hours=tz)
+        tz -= 1
+    dt = datetime.datetime(year, * thetime) + datetime.timedelta(hours=tz)
     timeUTC = dt.strftime('%Y/%m/%d %H:%M:%S')
     alt, azm = sunposUTC(str(-lon), str(lat), timeUTC)
     azm = azm - 180
     if xyz:
-        return unitvector_sunpos(alt, azm)
+        return calc_xyz(alt, azm)
     else:
         return alt, azm
 
+
+def sunpos(thetime, lat, lon, tz, dst=False):
+    """Calculate sun position for Radiance inputs"""
+    if dst:
+        tz -= 1
+    dt = datetime.datetime(* thetime) + datetime.timedelta(hours=tz)
+    timeUTC = dt.strftime('%Y/%m/%d %H:%M:%S')
+    alt, azm = sunposUTC(str(lon), str(lat), timeUTC)
+    return alt, azm
 
 # Sample of documentation
 #
