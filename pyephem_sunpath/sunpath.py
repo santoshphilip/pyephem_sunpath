@@ -9,7 +9,7 @@ import datetime
 
 # from
 # http://rhodesmill.org/pyephem/tutorial.html#computations-for-particular-observers
-def sunpos_utc(lon, lat, timeUTC):
+def sunpos_utc(lon, lat, timeutc):
     """Calculate sun position with UTC time
 
     Calculate sun position (altitude, azimuth) for a particular location (longitude, latitude) for a specific date and time (time is in UTC)
@@ -20,7 +20,7 @@ def sunpos_utc(lon, lat, timeUTC):
         longitude in decimals as a string - '-84.39733' West is -ve
     lat : str
         latitude in decimals as a string - '33.775867' North is +ve
-    timeUTC: str
+    timeutc: str
         date and time in the format '1984/5/30 16:22:56'. Time is **not** local time, but in UTC
 
     Returns
@@ -32,7 +32,7 @@ def sunpos_utc(lon, lat, timeUTC):
     """  # noqa: E501
     gatech = ephem.Observer()
     gatech.lon, gatech.lat = lon, lat
-    gatech.date = timeUTC
+    gatech.date = timeutc
     sun = ephem.Sun()
     sun.compute(gatech)
     return math.degrees(sun.alt), math.degrees(sun.az)
@@ -49,26 +49,88 @@ def _calc_xyz(alt, az):
 
 
 def sunpos_radiance(thetime, lat, lon, mer, year=2018, dst=False):
-    """Calculate sun position for Radiance inputs"""
+    """Calculate sun position with radiance inputs
+
+    Calculate sun position (altitude, azimuth) for a particular location (longitude, latitude) for a specific date and time (time is local time). The inputs are in radiance format, that are different from the standard format. The differences are listed below:
+
+    - thetime -> is a tuple without the year (month, day , hour, minute, second)
+    - lon -> West is +ve for longitude
+    - mer -> meridian for the time zone (instead of time zone)
+    - year -> year can be set here. It is usually not of significance in radiance calculations
+    - The azimuth in the results are described below
+
+    Parameters
+    ----------
+    thetime: tuple
+        date and time as a tuple without the year. Example: '1984/5/30 16:22:56' would be input as a tuple (5, 30, 16, 22, 56). Note that year is dropped. Time is local time
+    lon : float
+        longitude in decimals. West is +ve
+    lat : float
+        latitude in decimals. North is +ve
+    mer: float
+        Meridian of the time zone. West is +ve
+    year: int
+        The default year is 2018. this value is not of significant when doing radiance calculations.
+    dst: Boolean
+        dst=True means **thetime** is daylight savings time
+
+    Returns
+    -------
+    (float, float)
+        Sun position as (altitude, azimuth) where:
+
+        - altitude and azimuth are in degrees.
+        - South is 0 degrees azimuth.
+        - Azimuth is +ve going west (clockwise) and -ve going east (counter clockwise)
+        - if the sun is below the horizon, the altitude will be -ve
+        - example (70.14421911552256, 50.1906772325591)
+    """
     tz = mer / 15.
     if dst:
         tz -= 1
     dt = datetime.datetime(year, * thetime) + datetime.timedelta(hours=tz)
-    timeUTC = dt.strftime('%Y/%m/%d %H:%M:%S')
-    alt, azm = sunpos_utc(str(-lon), str(lat), timeUTC)
+    timeutc = dt.strftime('%Y/%m/%d %H:%M:%S')
+    alt, azm = sunpos_utc(str(-lon), str(lat), timeutc)
     azm = azm - 180
     return alt, azm
 
 
 def sunpos_radiancexyz(thetime, lat, lon, mer, year=2018, dst=False):
-    """Calculate sun position for Radiance inputs.
-    Returns a unit vector pinting to sun location"""
+    """Calculate sun position with radiance inputs. It returns the x, y, z of a unit vector pointing from the location to the sun
+
+    Calculate sun position (altitude, azimuth) for a particular location (longitude, latitude) for a specific date and time (time is local time). The inputs are in radiance format, that are different from the standard format. The differences are listed below:
+
+    - thetime -> is a tuple without the year (month, day , hour, minute, second)
+    - lon -> West is +ve for longitude
+    - mer -> meridian for the time zone (instead of time zone)
+    - year -> year can be set here. It is usually not of significance in radiance calculations
+
+    Parameters
+    ----------
+    thetime: tuple
+        date and time as a tuple without the year. Example: '1984/5/30 16:22:56' would be input as a tuple (5, 30, 16, 22, 56). Note that year is dropped. Time is local time
+    lon : float
+        longitude in decimals. West is +ve
+    lat : float
+        latitude in decimals. North is +ve
+    mer: float
+        Meridian of the time zone. West is +ve
+    year: int
+        The default year is 2018. this value is not of significant when doing radiance calculations.
+    dst: Boolean
+        dst=True means **thetime** is daylight savings time
+
+    Returns
+    -------
+    (float, float, float)
+        Sun position as the (x, y, z) of a unit vector pointing from the location to the sun
+    """
     tz = mer / 15.
     if dst:
         tz -= 1
     dt = datetime.datetime(year, * thetime) + datetime.timedelta(hours=tz)
-    timeUTC = dt.strftime('%Y/%m/%d %H:%M:%S')
-    alt, azm = sunpos_utc(str(-lon), str(lat), timeUTC)
+    timeutc = dt.strftime('%Y/%m/%d %H:%M:%S')
+    alt, azm = sunpos_utc(str(-lon), str(lat), timeutc)
     azm = azm - 180
     return _calc_xyz(alt, azm)
 
@@ -82,14 +144,14 @@ def sunpos(thetime, lat, lon, tz, dst=False):
     ----------
     thetime: datetime
         date and time in the datetime format. example: '1984/5/30 16:22:56' would be input as datetime.datetime(1984, 5, 30, 16, 22, 56). Time is local time
-    lon : float/str
-        longitude in decimals as a float or string- '-84.39733' West is -ve
-    lat : float/str
-        latitude in decimals as a float or string - '33.775867' North is +ve
-    tz: int
+    lon : float
+        longitude in decimals. West is -ve.
+    lat : float
+        latitude in decimalst. North is +ve
+    tz: float
         Timezone. West is -ve
     dst: Boolean
-        dst=True means thetime is daylight savings time
+        dst=True means **thetime** is daylight savings time
 
     Returns
     -------
@@ -105,8 +167,8 @@ def sunpos(thetime, lat, lon, tz, dst=False):
     if dst:
         tz += 1
     dt = thetime - datetime.timedelta(hours=tz)
-    timeUTC = dt.strftime('%Y/%m/%d %H:%M:%S')
-    alt, azm = sunpos_utc(str(lon), str(lat), timeUTC)
+    timeutc = dt.strftime('%Y/%m/%d %H:%M:%S')
+    alt, azm = sunpos_utc(str(lon), str(lat), timeutc)
     return alt, azm
 
 # Sample of documentation

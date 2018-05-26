@@ -103,7 +103,7 @@ print(azm, alt)
 print(180. + azm, alt)
 
 # New Delhi
-timestep = (2018, 5, 23, 21)
+timestep = (2018, 5, 23, 13)
 lat = 28.6
 lon = 77.2
 tz = 5.5

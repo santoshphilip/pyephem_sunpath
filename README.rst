@@ -38,8 +38,28 @@ Pyephem_sunpath uses the a small part of pyephem to calculate the sun position a
 Features
 --------
 
-- The function **sunposUTC()** calculates the sun position (in altitude and azimuth) using the UTC time.
-- TODO: decimal2degreeminute(), degreeminute2decimal()
+- **sunpos()** calculates sun position (in altitude and azimuth) using local time and timezone
+- **sunpos_radiance** and **sunpos_radiancexyz** also calculate the sun position. The arguments and results are designed for users of the `Radiance Software <https://www.radiance-online.org>`_.
+
+Usage
+-----
+
+Find the sun position in New Delhi at 1pm::
+
+    from pyephem_sunpath.sunpath import sunpos
+    from datetime import datetime
+
+    thetime = datetime(2018, 5, 23, 13)
+    lat = 28.6
+    lon = 77.2
+    tz = 5.5
+
+    alt, azm = sunpos(thetime, lat, lon, tz, dst=False)
+    print(alt, azm)
+    
+    >> 77.5362391561 232.336370505
+
+    
 
 Credits
 -------
