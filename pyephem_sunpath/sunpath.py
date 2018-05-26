@@ -84,7 +84,7 @@ def sunpos_radiance(thetime, lat, lon, mer, year=2018, dst=False):
         - Azimuth is +ve going west (clockwise) and -ve going east (counter clockwise)
         - if the sun is below the horizon, the altitude will be -ve
         - example (70.14421911552256, 50.1906772325591)
-    """
+    """  # noqa: E501
     tz = mer / 15.
     if dst:
         tz -= 1
@@ -124,7 +124,7 @@ def sunpos_radiancexyz(thetime, lat, lon, mer, year=2018, dst=False):
     -------
     (float, float, float)
         Sun position as the (x, y, z) of a unit vector pointing from the location to the sun
-    """
+    """  # noqa: E501
     tz = mer / 15.
     if dst:
         tz -= 1
