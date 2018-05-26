@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 from sunpath import sunposUTC
 from sunpath import sunpos_radiance
 from sunpath import sunpos
@@ -37,21 +39,21 @@ lon = 105.23694444444445
 mer = 7 * 15
 
 alt, azm = sunpos_radiance(timestep, lat, lon, mer, xyz=False, dst=False)
-print azm, alt
+print(azm, alt)
 # 38.9440224487 66.4587993035
-print 180. + azm, alt
+print(180. + azm, alt)
 # 218.944022449 66.4587993035
 # from https://www.esrl.noaa.gov/gmd/grad/solcalc/azel.html
 # 218.93 66.46
 # has a slight mismatch. Accuracy is OK for Stephan's purposes.
 xx, yy, zz = sunpos_radiance(timestep, lat, lon, mer, xyz=True, dst=False)
-print alt, azm
-print xx, yy, zz
-print '-' * 5
+print(alt, azm)
+print(xx, yy, zz)
+print('-' * 5)
 
 alt, azm = sunpos_radiance(timestep, lat, lon, mer, xyz=False, dst=True)
-print alt, azm
-print '-' * 5
+print(alt, azm)
+print('-' * 5)
 
 # from https://www.esrl.noaa.gov/gmd/grad/solcalc/
 timestep = (5, 23, 15, 49, 24)
@@ -60,21 +62,21 @@ lon = 98.583
 mer = 6 * 15
 
 alt, azm = sunpos_radiance(timestep, lat, lon, mer, xyz=False, dst=False)
-print azm, alt
+print(azm, alt)
 # 80.6560833326 43.8225073752
-print 180. + azm, alt
+print(180. + azm, alt)
 # 260.656083333 43.8225073752
 # from https://www.esrl.noaa.gov/gmd/grad/solcalc/
 # 260.65 43.83
 
 xx, yy, zz = sunpos_radiance(timestep, lat, lon, mer, xyz=True, dst=False)
-print alt, azm
-print xx, yy, zz
-print '-' * 5
+print(alt, azm)
+print(xx, yy, zz)
+print('-' * 5)
 
 alt, azm = sunpos_radiance(timestep, lat, lon, mer, xyz=False, dst=True)
-print alt, azm
-print '-' * 5
+print(alt, azm)
+print('-' * 5)
 
 timestep = (2018, 5, 23, 13)
 lat = 40.125
@@ -82,10 +84,10 @@ lon = -105.23694444444445
 tzone = -7
 
 alt, azm = sunpos(timestep, lat, lon, tzone, dst=False)
-print alt, azm
+print(alt, azm)
 alt, azm = sunpos(timestep, lat, lon, tzone, dst=True)
-print alt, azm
-print '-' * 5
+print(alt, azm)
+print('-' * 5)
 
 # New Delhi
 timestep = (5, 23, 13)
@@ -94,9 +96,9 @@ lon = -77.2
 mer = -5.5 * 15
 
 alt, azm = sunpos_radiance(timestep, lat, lon, mer, xyz=False, dst=False)
-print azm, alt
+print(azm, alt)
 # 80.6560833326 43.8225073752
-print 180. + azm, alt
+print(180. + azm, alt)
 
 # New Delhi
 timestep = (2018, 5, 23, 13)
@@ -105,7 +107,7 @@ lon = 77.2
 tz = 5.5
 
 alt, azm = sunpos(timestep, lat, lon, tz, dst=False)
-print azm, alt
+print(azm, alt)
 # 80.6560833326 43.8225073752
 # print 180. + azm, alt
 
