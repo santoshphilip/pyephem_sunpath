@@ -1,3 +1,7 @@
+2018-05-26
+----------
+ins sunpos(), thetime should be in datetime type
+
 2018-05-07
 ----------
 To get API documentation do the following:

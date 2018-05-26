@@ -2,6 +2,7 @@
 
 from __future__ import print_function
 
+import datetime
 from pyephem_sunpath import sunpath
 from pyephem_sunpath.pytest_helpers import almostequal
 
@@ -96,6 +97,7 @@ def test_sunpos():
         # thetime, lat, lon, tz, dst, expected
     )
     for thetime, lat, lon, tz, dst, expected in data:
+        thetime = datetime.datetime(*thetime)
         result = sunpath.sunpos(thetime, lat, lon, tz, dst)
         for rval, expval in zip(result, expected):
             assert almostequal(rval, expval)

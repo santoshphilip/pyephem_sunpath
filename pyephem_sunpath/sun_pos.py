@@ -1,7 +1,8 @@
 from __future__ import print_function
 
-from sunpath import sunposUTC
+from sunpath import sunpos_utc
 from sunpath import sunpos_radiance
+from sunpath import sunpos_radiancexyz
 from sunpath import sunpos
 import math
 import datetime
@@ -24,7 +25,7 @@ def sunpos_orig(timestep, lat, lon, mer, xyz=True, year=2018, dst=False):
         tz += 1
     dt = datetime.datetime(year, * timestep) + datetime.timedelta(hours=tz)
     timeUTC = dt.strftime('%Y/%m/%d %H:%M:%S')
-    alt, azm = sunposUTC(str(-lon), str(lat), timeUTC)
+    alt, azm = sunpos_utc(str(-lon), str(lat), timeUTC)
     azm = azm - 180
     if xyz:
         return calc_xyz(alt, azm)
@@ -38,7 +39,7 @@ lat = 40.125
 lon = 105.23694444444445
 mer = 7 * 15
 
-alt, azm = sunpos_radiance(timestep, lat, lon, mer, xyz=False, dst=False)
+alt, azm = sunpos_radiance(timestep, lat, lon, mer, dst=False)
 print(azm, alt)
 # 38.9440224487 66.4587993035
 print(180. + azm, alt)
@@ -46,12 +47,12 @@ print(180. + azm, alt)
 # from https://www.esrl.noaa.gov/gmd/grad/solcalc/azel.html
 # 218.93 66.46
 # has a slight mismatch. Accuracy is OK for Stephan's purposes.
-xx, yy, zz = sunpos_radiance(timestep, lat, lon, mer, xyz=True, dst=False)
+xx, yy, zz = sunpos_radiancexyz(timestep, lat, lon, mer, dst=False)
 print(alt, azm)
 print(xx, yy, zz)
 print('-' * 5)
 
-alt, azm = sunpos_radiance(timestep, lat, lon, mer, xyz=False, dst=True)
+alt, azm = sunpos_radiance(timestep, lat, lon, mer, dst=True)
 print(alt, azm)
 print('-' * 5)
 
@@ -61,7 +62,7 @@ lat = 39.833
 lon = 98.583
 mer = 6 * 15
 
-alt, azm = sunpos_radiance(timestep, lat, lon, mer, xyz=False, dst=False)
+alt, azm = sunpos_radiance(timestep, lat, lon, mer, dst=False)
 print(azm, alt)
 # 80.6560833326 43.8225073752
 print(180. + azm, alt)
@@ -69,12 +70,12 @@ print(180. + azm, alt)
 # from https://www.esrl.noaa.gov/gmd/grad/solcalc/
 # 260.65 43.83
 
-xx, yy, zz = sunpos_radiance(timestep, lat, lon, mer, xyz=True, dst=False)
+xx, yy, zz = sunpos_radiancexyz(timestep, lat, lon, mer, dst=False)
 print(alt, azm)
 print(xx, yy, zz)
 print('-' * 5)
 
-alt, azm = sunpos_radiance(timestep, lat, lon, mer, xyz=False, dst=True)
+alt, azm = sunpos_radiance(timestep, lat, lon, mer, dst=True)
 print(alt, azm)
 print('-' * 5)
 
@@ -83,9 +84,10 @@ lat = 40.125
 lon = -105.23694444444445
 tzone = -7
 
-alt, azm = sunpos(timestep, lat, lon, tzone, dst=False)
+
+alt, azm = sunpos(datetime.datetime(*timestep), lat, lon, tzone, dst=False)
 print(alt, azm)
-alt, azm = sunpos(timestep, lat, lon, tzone, dst=True)
+alt, azm = sunpos(datetime.datetime(*timestep), lat, lon, tzone, dst=True)
 print(alt, azm)
 print('-' * 5)
 
@@ -95,22 +97,22 @@ lat = 28.6
 lon = -77.2
 mer = -5.5 * 15
 
-alt, azm = sunpos_radiance(timestep, lat, lon, mer, xyz=False, dst=False)
+alt, azm = sunpos_radiance(timestep, lat, lon, mer, dst=False)
 print(azm, alt)
 # 80.6560833326 43.8225073752
 print(180. + azm, alt)
 
 # New Delhi
-timestep = (2018, 5, 23, 13)
+timestep = (2018, 5, 23, 21)
 lat = 28.6
 lon = 77.2
 tz = 5.5
 
-alt, azm = sunpos(timestep, lat, lon, tz, dst=False)
+alt, azm = sunpos(datetime.datetime(*timestep), lat, lon, tz, dst=False)
 print(azm, alt)
 # 80.6560833326 43.8225073752
 # print 180. + azm, alt
 
 # sunpos_utc
 # sunpos_radiance
-# sunpos(timestep, lat, lon, tz, dst=False)
+# sunpos(datetime.datetime(*timestep), lat, lon, tz, dst=False)

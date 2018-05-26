@@ -89,7 +89,7 @@ def sunpos(thetime, lat, lon, tz, dst=False):
     tz: int
         Timezone. West is -ve
     dst: Boolean
-        Flag for daylight savings time
+        dst=True means thetime is daylight savings time
 
     Returns
     -------
@@ -99,11 +99,12 @@ def sunpos(thetime, lat, lon, tz, dst=False):
         - altitude and azimuth are in degrees.
         - North is 0 degrees azimuth.
         - Azimuth is +ve in the clockwise direction starting from North
+        - if the sun is below the horizon, the altitude will be -ve
         - example (70.14421911552256, 122.1906772325591)
     """  # noqa: E501
     if dst:
         tz += 1
-    dt = datetime.datetime(* thetime) - datetime.timedelta(hours=tz)
+    dt = thetime - datetime.timedelta(hours=tz)
     timeUTC = dt.strftime('%Y/%m/%d %H:%M:%S')
     alt, azm = sunpos_utc(str(lon), str(lat), timeUTC)
     return alt, azm
