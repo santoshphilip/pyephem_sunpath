@@ -81,7 +81,7 @@ def sunpos(thetime, lat, lon, tz, dst=False):
     Parameters
     ----------
     thetime: datetime
-        date and time in the datetime format. example: '1984/5/30 16:22:56' would be input as (1984, 5, 30, 16, 22, 56). Time is local time
+        date and time in the datetime format. example: '1984/5/30 16:22:56' would be input as datetime.datetime(1984, 5, 30, 16, 22, 56). Time is local time
     lon : float/str
         longitude in decimals as a float or string- '-84.39733' West is -ve
     lat : float/str
