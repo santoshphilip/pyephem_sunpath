@@ -19,8 +19,8 @@ def test_sunpos_utc():
         assert result == expected
 
 
-def test_calc_xyz():
-    """py.test for calc_xyz"""
+def test__calc_xyz():
+    """py.test for _calc_xyz"""
     data = (
         (43.8225073752, 80.6560833326,
             (-0.711915254482, -0.117140973417, 0.692426647944)),
@@ -30,7 +30,7 @@ def test_calc_xyz():
         # alt, az, xyz
     )
     for alt, az, xyz in data:
-        result = sunpath.calc_xyz(alt, az)
+        result = sunpath._calc_xyz(alt, az)
         for rval, xyzval in zip(result, xyz):
             assert almostequal(rval, xyzval)
 

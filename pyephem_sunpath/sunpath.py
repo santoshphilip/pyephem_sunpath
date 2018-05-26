@@ -10,7 +10,7 @@ import datetime
 # from
 # http://rhodesmill.org/pyephem/tutorial.html#computations-for-particular-observers
 def sunpos_utc(lon, lat, timeUTC):
-    """Calculate sun position
+    """Calculate sun position with UTC time
 
     Calculate sun position (altitude, azimuth) for a particular location (longitude, latitude) for a specific date and time (time is in UTC)
 
@@ -38,7 +38,7 @@ def sunpos_utc(lon, lat, timeUTC):
     return math.degrees(sun.alt), math.degrees(sun.az)
 
 
-def calc_xyz(alt, az):
+def _calc_xyz(alt, az):
     """calculate the direction vector for the alt, azm"""
     # az = 180. + az
     x_val = math.sin((az - 180) * math.pi / 180)
@@ -61,7 +61,8 @@ def sunpos_radiance(thetime, lat, lon, mer, year=2018, dst=False):
 
 
 def sunpos_radiancexyz(thetime, lat, lon, mer, year=2018, dst=False):
-    """Calculate sun position for Radiance inputs"""
+    """Calculate sun position for Radiance inputs.
+    Returns a unit vector pinting to sun location"""
     tz = mer / 15.
     if dst:
         tz -= 1
@@ -69,11 +70,37 @@ def sunpos_radiancexyz(thetime, lat, lon, mer, year=2018, dst=False):
     timeUTC = dt.strftime('%Y/%m/%d %H:%M:%S')
     alt, azm = sunpos_utc(str(-lon), str(lat), timeUTC)
     azm = azm - 180
-    return calc_xyz(alt, azm)
+    return _calc_xyz(alt, azm)
 
 
 def sunpos(thetime, lat, lon, tz, dst=False):
-    """Calculate sun position for Radiance inputs"""
+    """Calculate sun position
+
+    Calculate sun position (altitude, azimuth) for a particular location (longitude, latitude) for a specific date and time (time is local time)
+
+    Parameters
+    ----------
+    thetime: datetime
+        date and time in the datetime format. example: '1984/5/30 16:22:56' would be input as (1984, 5, 30, 16, 22, 56). Time is local time
+    lon : float/str
+        longitude in decimals as a float or string- '-84.39733' West is -ve
+    lat : float/str
+        latitude in decimals as a float or string - '33.775867' North is +ve
+    tz: int
+        Timezone. West is -ve
+    dst: Boolean
+        Flag for daylight savings time
+
+    Returns
+    -------
+    (float, float)
+        Sun position as (altitude, azimuth) where:
+
+        - altitude and azimuth are in degrees.
+        - North is 0 degrees azimuth.
+        - Azimuth is +ve in the clockwise direction starting from North
+        - example (70.14421911552256, 122.1906772325591)
+    """  # noqa: E501
     if dst:
         tz += 1
     dt = datetime.datetime(* thetime) - datetime.timedelta(hours=tz)
