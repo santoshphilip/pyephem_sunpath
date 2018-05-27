@@ -11,6 +11,32 @@ ins sunpos(), thetime should be in datetime type - DONE
     - pywphem_sunpath thetime lon, lat, tz dst
 - Release the docs    
 
+
+2018-04-24
+----------
+How to run twine
+
+= git commit
+- make clean
+- bumpversion patch # or minor or major
+
+Create some distributions in the normal way:
+
+    python setup.py sdist bdist_wheel
+
+Upload with twine to Test PyPI and verify things look right. Twine will automatically prompt for your username and password:
+
+    twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+    username: ...
+    password:
+
+
+Upload to PyPI:
+
+    twine upload dist/*
+
+Done!
+
 2018-05-07
 ----------
 To get API documentation do the following:
