@@ -1,12 +1,12 @@
 2018-05-26
 ----------
 ins sunpos(), thetime should be in datetime type - DONE
-- put in copyright on all files
+- put in copyright on all files 
 - add stephen to the contributors
 - complete docstrings - DONE
 - update Readme - DONE
-- test setup.py
-- release to pypi
+- test setup.py - DONE
+- release to pypi 
 - incorporate click
     - pywphem_sunpath thetime lon, lat, tz dst
 - Release the docs    
