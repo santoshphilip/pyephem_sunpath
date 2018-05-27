@@ -6,7 +6,7 @@ ins sunpos(), thetime should be in datetime type - DONE
 - complete docstrings - DONE
 - update Readme - DONE
 - test setup.py - DONE
-- release to pypi 
+- release to pypi - DONE 
 - incorporate click
     - pywphem_sunpath thetime lon, lat, tz dst
 - Release the docs    
@@ -29,11 +29,19 @@ Upload with twine to Test PyPI and verify things look right. Twine will automati
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
     username: ...
     password:
+    
+test it my making a virtualenv and :
+
+    python3 -m pip install --index-url https://test.pypi.org/simple/ pyephem_sunpath
+    
 
 
 Upload to PyPI:
 
     twine upload dist/*
+
+make sure to set logins in ~/.pypirc
+see https://github.com/pypa/setuptools/issues/941    
 
 Done!
 
