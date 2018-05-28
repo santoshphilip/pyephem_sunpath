@@ -1,7 +1,7 @@
 2018-05-28
 ----------
-- put in copyright on all files 
-- add stephen to the contributors
+- put in copyright on all files  - DONE
+- add stephen to the contributors - DONE
 
 - ***** click is problematic on python3 - don't implement click ***  
 - http://click.pocoo.org/5/python3/  
