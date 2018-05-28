@@ -9,7 +9,7 @@ ins sunpos(), thetime should be in datetime type - DONE
 - release to pypi - DONE 
 - incorporate click
     - pywphem_sunpath thetime lon, lat, tz dst
-- Release the docs    
+- Release the docs - DONE   
 
 
 2018-04-24
