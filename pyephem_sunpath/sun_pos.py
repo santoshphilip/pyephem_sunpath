@@ -8,7 +8,7 @@ import math
 import datetime
 
 
-def calc_xyz(alt, az):
+def _calc_xyz(alt, az):
     """calculate the direction vector for the alt, azm"""
     # az = 180. + az
     x_val = math.sin((az - 180) * math.pi / 180)
@@ -18,7 +18,7 @@ def calc_xyz(alt, az):
     return (x_val / length,  y_val / length, z_val / length)
 
 
-def sunpos_orig(timestep, lat, lon, mer, xyz=True, year=2018, dst=False):
+def _sunpos_orig(timestep, lat, lon, mer, xyz=True, year=2018, dst=False):
     """Calculate sun position for Radiance inputs"""
     tz = mer / 15.
     if dst:

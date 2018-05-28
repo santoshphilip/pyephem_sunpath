@@ -1,14 +1,18 @@
+2018-05-28
+----------
+- put in copyright on all files 
+- add stephen to the contributors
+- incorporate click
+    - pywphem_sunpath thetime lon, lat, tz dst
+    - see http://click.pocoo.org/5/setuptools/ for cli.py to work for real
+
 2018-05-26
 ----------
 ins sunpos(), thetime should be in datetime type - DONE
-- put in copyright on all files 
-- add stephen to the contributors
 - complete docstrings - DONE
 - update Readme - DONE
 - test setup.py - DONE
 - release to pypi - DONE 
-- incorporate click
-    - pywphem_sunpath thetime lon, lat, tz dst
 - Release the docs - DONE   
 
 

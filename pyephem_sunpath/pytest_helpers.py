@@ -6,7 +6,7 @@
 from __future__ import print_function
 
 
-def almostequal(first, second, places=7, printit=True):
+def _almostequal(first, second, places=7, printit=True):
     """docstring for almostequal"""
     if round(abs(second-first), places) != 0:
         if printit:

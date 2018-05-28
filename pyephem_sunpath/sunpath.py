@@ -147,7 +147,7 @@ def sunpos(thetime, lat, lon, tz, dst=False):
     lon : float
         longitude in decimals. West is -ve.
     lat : float
-        latitude in decimalst. North is +ve
+        latitude in decimals. North is +ve
     tz: float
         Timezone. West is -ve
     dst: Boolean
@@ -161,8 +161,8 @@ def sunpos(thetime, lat, lon, tz, dst=False):
         - altitude and azimuth are in degrees.
         - North is 0 degrees azimuth.
         - Azimuth is +ve in the clockwise direction starting from North
-        - if the sun is below the horizon, the altitude will be -ve
         - example (70.14421911552256, 122.1906772325591)
+        - if the sun is below the horizon, the altitude will be -ve
     """  # noqa: E501
     if dst:
         tz += 1

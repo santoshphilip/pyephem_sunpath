@@ -4,7 +4,7 @@ from __future__ import print_function
 
 import datetime
 from pyephem_sunpath import sunpath
-from pyephem_sunpath.pytest_helpers import almostequal
+from pyephem_sunpath.pytest_helpers import _almostequal
 
 
 def test_sunpos_utc():
@@ -33,7 +33,7 @@ def test__calc_xyz():
     for alt, az, xyz in data:
         result = sunpath._calc_xyz(alt, az)
         for rval, xyzval in zip(result, xyz):
-            assert almostequal(rval, xyzval)
+            assert _almostequal(rval, xyzval)
 
 
 def test_sunpos_radiance():
@@ -62,7 +62,7 @@ def test_sunpos_radiance():
         args = (thetime, lat, lon, mer, year, dst)
         result = sunpath.sunpos_radiance(*args)
         for rval, expval in zip(result, expected):
-            assert almostequal(rval, expval)
+            assert _almostequal(rval, expval)
 
 
 def test_sunpos_radiancexyz():
@@ -81,7 +81,7 @@ def test_sunpos_radiancexyz():
         args = (thetime, lat, lon, mer, year, dst)
         result = sunpath.sunpos_radiancexyz(*args)
         for rval, expval in zip(result, expected):
-            assert almostequal(rval, expval)
+            assert _almostequal(rval, expval)
 
 
 def test_sunpos():
@@ -100,4 +100,4 @@ def test_sunpos():
         thetime = datetime.datetime(*thetime)
         result = sunpath.sunpos(thetime, lat, lon, tz, dst)
         for rval, expval in zip(result, expected):
-            assert almostequal(rval, expval)
+            assert _almostequal(rval, expval)
