@@ -2,6 +2,20 @@
 History
 =======
 
+2018-05-28
+----------
+
+* cleaned up code
+* comprehensive docstrings
+* updated README.rst
+* added copyright notices
+* updated contributing authors
+
+0.1.1 (2018-05-26)
+------------------
+
+* Working release on PyPI.
+
 0.1.0 (2018-05-05)
 ------------------
 

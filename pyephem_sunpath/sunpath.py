@@ -1,3 +1,22 @@
+# Copyright (c) 2018 Santosh Philip
+# Copyright (c) 2018 Stephen Wasilewski
+# =======================================================================
+# This file is part of pyephem_sunpath.
+#
+# Pyephem_sunpath is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Pyephem_sunpath is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser Public License for more details.
+#
+# You should have received a copy of the GNU Lesser Public License
+# along with pyephem_sunpath.  If not, see <http://www.gnu.org/licenses/>.
+# =======================================================================
+
 """Calculate sun path and sun position using pyephen"""
 
 from __future__ import print_function

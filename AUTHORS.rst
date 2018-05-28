@@ -5,9 +5,11 @@ Credits
 Development Lead
 ----------------
 
-* Santosh Philip <santosh_philip@notemail.com>
+* Santosh Philip <santosh_philip@notsuchemail.com>
 
 Contributors
 ------------
 
-None yet. Why not be the first?
+* Stephen Wasilewski
+
+

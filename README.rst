@@ -23,8 +23,9 @@ pyephem_sunpath
 Calculate sunpath using pyephem
 
 
-* Free software: GNU General Public License v3
+* Free software: GNU Lesser Public License v3
 * Documentation: https://pyephem-sunpath.readthedocs.io.
+* Repository: https://github.com/santoshphilip/pyephem_sunpath
 
 Introduction
 ------------
@@ -40,6 +41,7 @@ Features
 
 - **sunpos()** calculates sun position (in altitude and azimuth) using local time and timezone
 - **sunpos_radiance** and **sunpos_radiancexyz** also calculate the sun position. The arguments and results are designed for users of the `Radiance Software <https://www.radiance-online.org>`_.
+- function details are in the module documentation and docstrings
 
 Usage
 -----
