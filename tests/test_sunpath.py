@@ -22,7 +22,7 @@ from __future__ import print_function
 
 import datetime
 from pyephem_sunpath import sunpath
-from pyephem_sunpath.pytest_helpers import _almostequal
+from pytest_helpers import _almostequal
 
 
 def test_sunpos_utc():

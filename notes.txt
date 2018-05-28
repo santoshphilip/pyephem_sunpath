@@ -41,12 +41,6 @@ Upload with twine to Test PyPI and verify things look right. Twine will automati
     username: ...
     password:
     
-test it my making a virtualenv and :
-
-    python3 -m pip install --index-url https://test.pypi.org/simple/ pyephem_sunpath
-    
-
-
 Upload to PyPI:
 
     twine upload dist/*
