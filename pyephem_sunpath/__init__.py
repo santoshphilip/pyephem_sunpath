@@ -4,4 +4,4 @@
 
 __author__ = """Santosh Philip"""
 __email__ = 'santosh_philip@notemail.com'
-__version__ = '0.1.1'
+__version__ = '0.2.0'
