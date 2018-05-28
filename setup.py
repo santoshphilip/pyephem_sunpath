@@ -11,7 +11,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['click>=6.0', 'pyephem>=3.7.6.0']
+requirements = ['pyephem>=3.7.6.0']
 
 setup_requirements = ['pytest-runner', ]
 
@@ -33,11 +33,6 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     description="Calculate sunpath using pyephem",
-    entry_points={
-        'console_scripts': [
-            'pyephem_sunpath=pyephem_sunpath.cli:main',
-        ],
-    },
     install_requires=requirements,
     license="GNU General Public License v3",
     long_description=readme + '\n\n' + history,
