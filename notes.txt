@@ -47,7 +47,9 @@ Upload to PyPI:
     twine upload dist/*
 
 make sure to set logins in ~/.pypirc
-see https://github.com/pypa/setuptools/issues/941    
+see https://github.com/pypa/setuptools/issues/941 
+
+update to readthedocs   
 
 Done!
 
