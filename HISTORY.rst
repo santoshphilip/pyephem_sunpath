@@ -2,8 +2,11 @@
 History
 =======
 
+0.2.0 (2018-05-28)
+------------------
+
 2018-05-28
-----------
+~~~~~~~~~~
 
 * cleaned up code
 * comprehensive docstrings

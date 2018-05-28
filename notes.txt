@@ -1,7 +1,7 @@
 2018-05-28
 ----------
 - put in copyright on all files  - DONE
-- add stephen to the contributors - DONE
+- add stephen to the contributors - DONE    
 
 - ***** click is problematic on python3 - don't implement click ***  
 - http://click.pocoo.org/5/python3/  
@@ -30,6 +30,7 @@ How to run twine
 = git commit
 - make clean
 - bumpversion patch # or minor or major
+    - add this to HISTORY.rst
 
 Create some distributions in the normal way:
 
