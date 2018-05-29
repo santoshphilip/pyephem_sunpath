@@ -1,26 +1,26 @@
 2018-05-28
 ----------
 - put in copyright on all files  - DONE
-- add stephen to the contributors - DONE    
+- add stephen to the contributors - DONE
 
-- ***** click is problematic on python3 - don't implement click ***  
-- http://click.pocoo.org/5/python3/  
+- ***** click is problematic on python3 - don't implement click ***
+- http://click.pocoo.org/5/python3/
 - incorporate click
     - pywphem_sunpath thetime lon, lat, tz dst
     - see http://click.pocoo.org/5/setuptools/ for cli.py to work for real
     - https://dbader.org/blog/python-commandline-tools-with-click
 - ***** click is problematic on python3 - don't implement click ***
 
-remove all click stuff - DONE    
-    
+remove all click stuff - DONE
+
 2018-05-26
 ----------
 ins sunpos(), thetime should be in datetime type - DONE
 - complete docstrings - DONE
 - update Readme - DONE
 - test setup.py - DONE
-- release to pypi - DONE 
-- Release the docs - DONE   
+- release to pypi - DONE
+- Release the docs - DONE
 
 
 2018-04-24
@@ -30,7 +30,7 @@ How to run twine
 = git commit
 - make clean
 - bumpversion patch # or minor or major
-    - add this to HISTORY.rst
+    - document changes to HISTORY.rst before bumping
 
 Create some distributions in the normal way:
 
@@ -41,15 +41,15 @@ Upload with twine to Test PyPI and verify things look right. Twine will automati
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
     username: ...
     password:
-    
+
 Upload to PyPI:
 
     twine upload dist/*
 
 make sure to set logins in ~/.pypirc
-see https://github.com/pypa/setuptools/issues/941 
+see https://github.com/pypa/setuptools/issues/941
 
-update to readthedocs   
+update to readthedocs
 
 Done!
 
