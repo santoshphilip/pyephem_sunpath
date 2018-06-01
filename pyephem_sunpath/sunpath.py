@@ -49,11 +49,11 @@ def sunpos_utc(lon, lat, timeutc):
         where altitude and azimuth in degrees - (70.14421911552256, 122.1906772325591)
 
     """  # noqa: E501
-    gatech = ephem.Observer()
-    gatech.lon, gatech.lat = lon, lat
-    gatech.date = timeutc
+    someplace = ephem.Observer()
+    someplace.lon, someplace.lat = lon, lat
+    someplace.date = timeutc
     sun = ephem.Sun()
-    sun.compute(gatech)
+    sun.compute(someplace)
     return math.degrees(sun.alt), math.degrees(sun.az)
 
 
@@ -189,6 +189,22 @@ def sunpos(thetime, lat, lon, tz, dst=False):
     timeutc = dt.strftime('%Y/%m/%d %H:%M:%S')
     alt, azm = sunpos_utc(str(lon), str(lat), timeutc)
     return alt, azm
+
+
+def sunrise_utc(lat, lon, timeutc):
+    """sunrise in utc time,
+    that matches Astronomical Almanac of the United States Naval Observatory
+    see http://rhodesmill.org/pyephem/rise-set.html"""
+    someplace = ephem.Observer()
+
+    # ---- settings to match the United States Naval Observatory assumptions
+    someplace.pressure = 0
+    someplace.horizon = '-0:34'
+    # ---- settings to match the United States Naval Observatory assumptions
+
+    someplace.lat, someplace.lon = lat, lon
+    someplace.date = timeutc
+    return str(someplace.previous_rising(ephem.Sun()))
 
 # Sample of documentation
 #

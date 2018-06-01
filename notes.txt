@@ -1,3 +1,8 @@
+2018-05-31
+----------
+- sunrise and sunset functions
+- list of thtimes to get sunpath
+
 2018-05-28
 ----------
 - put in copyright on all files  - DONE
