@@ -1,7 +1,9 @@
 2018-05-31
 ----------
 - sunrise and sunset functions
+- localnoon or transit function
 - list of thtimes to get sunpath
+- clip thetimes with sunrise, sunset (do <= or <)
 
 2018-05-28
 ----------

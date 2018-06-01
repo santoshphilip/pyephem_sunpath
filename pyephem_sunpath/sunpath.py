@@ -192,9 +192,28 @@ def sunpos(thetime, lat, lon, tz, dst=False):
 
 
 def sunrise_utc(lat, lon, timeutc):
-    """sunrise in utc time,
-    that matches Astronomical Almanac of the United States Naval Observatory
-    see http://rhodesmill.org/pyephem/rise-set.html"""
+    """Calculates sunrise in UTC time. given lat, lon and date-time in UTC
+
+    All times are in UTC.
+    The rising time matches the the ones given by the US Navy in their Astronomical Almanac. For further detail see:
+    http://rhodesmill.org/pyephem/rise-set.html#
+
+
+    Parameters
+    ----------
+    lon : str
+        longitude in decimals as a string - '-84.39733' West is -ve
+    lat : str
+        latitude in decimals as a string - '33.775867' North is +ve
+    timeutc: str
+        date and time in the format '1984/5/30 16:22:56'. Time is **not** local time, but in UTC. It indicates the day on which you want the sunrise to be calculated.
+
+    Returns
+    -------
+    str
+        Returns the sunrise in the format '1984/5/30 16:22:56'
+
+    """  # noqa: E501
     someplace = ephem.Observer()
 
     # ---- settings to match the United States Naval Observatory assumptions
@@ -205,6 +224,42 @@ def sunrise_utc(lat, lon, timeutc):
     someplace.lat, someplace.lon = lat, lon
     someplace.date = timeutc
     return str(someplace.previous_rising(ephem.Sun()))
+
+
+def sunset_utc(lat, lon, timeutc):
+    """Calculates sunset in UTC time. given lat, lon and date-time in UTC
+
+    All times are in UTC.
+    The setting time matches the the ones given by the US Navy in their Astronomical Almanac. For further detail see:
+    http://rhodesmill.org/pyephem/rise-set.html#
+
+
+    Parameters
+    ----------
+    lon : str
+        longitude in decimals as a string - '-84.39733' West is -ve
+    lat : str
+        latitude in decimals as a string - '33.775867' North is +ve
+    timeutc: str
+        date and time in the format '1984/5/30 16:22:56'. Time is **not** local time, but in UTC. It indicates the day on which you want the sunset to be calculated.
+
+    Returns
+    -------
+    str
+        Returns the sunset in the format '1984/5/30 16:22:56'
+
+    """  # noqa: E501
+    someplace = ephem.Observer()
+
+    # ---- settings to match the United States Naval Observatory assumptions
+    someplace.pressure = 0
+    someplace.horizon = '-0:34'
+    # ---- settings to match the United States Naval Observatory assumptions
+
+    someplace.lat, someplace.lon = lat, lon
+    someplace.date = timeutc
+    return str(someplace.next_setting(ephem.Sun()))
+
 
 # Sample of documentation
 #

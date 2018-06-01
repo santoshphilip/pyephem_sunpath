@@ -120,10 +120,24 @@ def test_sunpos():
         for rval, expval in zip(result, expected):
             assert _almostequal(rval, expval)
 
+
 def test_sunrise_utc():
     """py.test for sunrise_utc"""
-    data = (('33.8', '-84.4', '2009/09/06 17:00', "2009/9/6 11:14:57"), # lat, lon, utctime, expected
+    data = (
+        ('33.8', '-84.4', '2009/09/06 17:00', "2009/9/6 11:14:57"),
+        # lat, lon, utctime, expected
     )
     for lat, lon, utctime, expected in data:
         result = sunpath.sunrise_utc(lat, lon, utctime)
+        assert result == expected
+
+
+def test_sunset_utc():
+    """py.test for sunset_utc"""
+    data = (
+        ('33.8', '-84.4', '2009/09/06 17:00', "2009/9/6 23:56:10"),
+        # lat, lon, utctime, expected
+    )
+    for lat, lon, utctime, expected in data:
+        result = sunpath.sunset_utc(lat, lon, utctime)
         assert result == expected
