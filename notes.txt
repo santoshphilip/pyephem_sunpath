@@ -1,3 +1,8 @@
+2018-06-08
+----------
+- subclassing Observer failed due to complexity
+- try using decorators to do this
+
 2018-05-31
 ----------
 - sunrise and sunset functions
