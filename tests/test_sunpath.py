@@ -141,3 +141,21 @@ def test_sunset_utc():
     for lat, lon, utctime, expected in data:
         result = sunpath.sunset_utc(lat, lon, utctime)
         assert result == expected
+
+
+def test_local2utc():
+    """py.test for local2utc"""
+    dtime = datetime.datetime
+    data = (
+            (dtime(2018, 2, 28, 10), -3, False, '2018/02/28 13:00:00'),
+            # thetime, tz, dst, expected
+            (dtime(2018, 2, 28, 10), -3, True, '2018/02/28 12:00:00'),
+            # thetime, tz, dst, expected
+            (dtime(2018, 2, 28, 10), 3, False, '2018/02/28 07:00:00'),
+            # thetime, tz, dst, expected
+            (dtime(2018, 2, 28, 10), 3, True, '2018/02/28 06:00:00'),
+            # thetime, tz, dst, expected
+    )
+    for thetime, tz, dst, expected in data:
+        result = sunpath.local2utc(thetime, tz, dst)
+        assert result == expected

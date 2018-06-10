@@ -183,10 +183,7 @@ def sunpos(thetime, lat, lon, tz, dst=False):
         - example (70.14421911552256, 122.1906772325591)
         - if the sun is below the horizon, the altitude will be -ve
     """  # noqa: E501
-    if dst:
-        tz += 1
-    dt = thetime - datetime.timedelta(hours=tz)
-    timeutc = dt.strftime('%Y/%m/%d %H:%M:%S')
+    timeutc = local2utc(thetime, tz, dst=dst)
     alt, azm = sunpos_utc(str(lon), str(lat), timeutc)
     return alt, azm
 
@@ -259,6 +256,20 @@ def sunset_utc(lat, lon, timeutc):
     someplace.lat, someplace.lon = lat, lon
     someplace.date = timeutc
     return str(someplace.next_setting(ephem.Sun()))
+
+
+def local2utc(thetime, tz, dst=False):
+    """convert local time to utc time"""
+    if dst:
+        tz += 1
+    dt = thetime - datetime.timedelta(hours=tz)
+    timeutc = dt.strftime('%Y/%m/%d %H:%M:%S')
+    return timeutc
+
+
+def utc2local():
+    """convert utc time to local"""
+    pass
 
 
 # Sample of documentation
