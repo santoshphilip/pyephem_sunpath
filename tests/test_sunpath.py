@@ -159,3 +159,34 @@ def test_local2utc():
     for thetime, tz, dst, expected in data:
         result = sunpath.local2utc(thetime, tz, dst)
         assert result == expected
+
+
+def testutc2local():
+    """py.test for utc2local"""
+    dtime = datetime.datetime
+    data = (
+            (dtime(2018, 2, 28, 10), -3, False, '2018/02/28 13:00:00'),
+            # expected, tz, dst, utctime
+            (dtime(2018, 2, 28, 10), -3, True, '2018/02/28 12:00:00'),
+            # expected, tz, dst, utctime
+            (dtime(2018, 2, 28, 10), 3, False, '2018/02/28 07:00:00'),
+            # expected, tz, dst, utctime
+            (dtime(2018, 2, 28, 10), 3, True, '2018/02/28 06:00:00'),
+            # expected, tz, dst, utctime
+    )
+    for expected, tz, dst, utctime in data:
+        result = sunpath.utc2local(utctime, tz, dst)
+        assert result == expected
+
+
+def test_sunrise():
+    """py.test for sunrise"""
+    dtime = datetime.datetime
+    data = (
+        (dtime(2009, 9, 6), 33.8, -84.4, -5, True,
+            dtime(2009, 9, 6, 7, 14, 57)),
+        # thedate, lat, lon, tz, dst, expected
+    )
+    for thedate, lat, lon, tz, dst, expected in data:
+        result = sunpath.sunrise(thedate, lat, lon, tz, dst)
+        assert result == expected

@@ -267,9 +267,22 @@ def local2utc(thetime, tz, dst=False):
     return timeutc
 
 
-def utc2local():
+def utc2local(thetime, tz, dst=False):
     """convert utc time to local"""
-    pass
+    thetime = datetime.datetime.strptime(thetime, '%Y/%m/%d %H:%M:%S')
+    if dst:
+        tz += 1
+    return thetime + datetime.timedelta(hours=tz)
+
+
+def sunrise(thedate, lat, lon, tz, dst=False):
+    """Calculates sunset in local time.
+    Given lat, lon and date in datetime format"""
+    lat, lon = str(lat), str(lon)
+    thedate = thedate.replace(hour=12)  # set the time to midday
+    timeutc = local2utc(thedate, tz, dst)
+    utcrise = sunrise_utc(lat, lon, timeutc)
+    return utc2local(utcrise, tz, dst)
 
 
 # Sample of documentation
