@@ -284,6 +284,14 @@ def sunrise(thedate, lat, lon, tz, dst=False):
     utcrise = sunrise_utc(lat, lon, timeutc)
     return utc2local(utcrise, tz, dst)
 
+def sunset(thedate, lat, lon, tz, dst=False):
+    """calculates the sunrise in local time"""
+    lat, lon = str(lat), str(lon)
+    thedate = thedate.replace(hour=12)  # set the time to midday
+    timeutc = local2utc(thedate, tz, dst)
+    utcset = sunset_utc(lat, lon, timeutc)
+    return utc2local(utcset, tz, dst)
+
 
 # Sample of documentation
 #

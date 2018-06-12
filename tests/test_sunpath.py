@@ -190,3 +190,16 @@ def test_sunrise():
     for thedate, lat, lon, tz, dst, expected in data:
         result = sunpath.sunrise(thedate, lat, lon, tz, dst)
         assert result == expected
+
+
+def test_sunset():
+    """py.test for sunset"""
+    dtime = datetime.datetime
+    data = (
+        (dtime(2009, 9, 6), 33.8, -84.4, -5, True,
+            dtime(2009, 9, 6, 7+12, 56, 10)),
+        # thedate, lat, lon, tz, dst, expected
+    )
+    for thedate, lat, lon, tz, dst, expected in data:
+        result = sunpath.sunset(thedate, lat, lon, tz, dst)
+        assert result == expected
