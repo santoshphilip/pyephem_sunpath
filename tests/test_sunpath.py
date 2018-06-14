@@ -32,6 +32,10 @@ def test_sunpos_utc():
          '1984/5/30 16:22:56',
          (70.14421911552256, 122.1906772325591)),
         # lon, lat, timeUTC, expected
+        (-84.39733, 33.775867,
+         '1984/5/30 16:22:56',
+         (70.14421911552256, 122.1906772325591)),
+        # lon, lat, timeUTC, expected
     )
     for lon, lat, timeUTC, expected in data:
         result = sunpath.sunpos_utc(lon, lat, timeUTC)
