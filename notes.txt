@@ -1,7 +1,13 @@
+2018-06-14
+----------
+- write a lon, lat converter for radians
+
+
 2018-06-08
 ----------
 - subclassing Observer failed due to complexity
 - try using decorators to do this
+- not using either of the above
 
 2018-05-31
 ----------

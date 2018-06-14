@@ -35,11 +35,11 @@ def sunpos_utc(lon, lat, timeutc):
 
     Parameters
     ----------
-    lon : str
-        longitude in decimals as a string - '-84.39733' West is -ve
+    lon : str, float
+        longitude in decimals as a string  or float- '-84.39733' West is -ve
     lat : str
-        latitude in decimals as a string - '33.775867' North is +ve
-    timeutc: str
+        latitude in decimals as a string or float- '33.775867' North is +ve
+    timeutc: str, float
         date and time in the format '1984/5/30 16:22:56'. Time is **not** local time, but in UTC
 
     Returns
@@ -50,7 +50,7 @@ def sunpos_utc(lon, lat, timeutc):
 
     """  # noqa: E501
     someplace = ephem.Observer()
-    someplace.lon, someplace.lat = lon, lat
+    someplace.lon, someplace.lat = str(lon), str(lat)
     someplace.date = timeutc
     sun = ephem.Sun()
     sun.compute(someplace)
