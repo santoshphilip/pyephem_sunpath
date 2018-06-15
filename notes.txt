@@ -1,6 +1,15 @@
+2018-06-15
+----------
+- what next ?
+- graphics
+- should it be a separate package ?
+    - pydrawsunpath - does not trigger result in google search.
+
+
 2018-06-14
 ----------
 - write a lon, lat converter for radians
+- maybe later
 
 
 2018-06-08
