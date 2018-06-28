@@ -37,10 +37,10 @@ def sunpos_utc(lon, lat, timeutc):
     ----------
     lon : str, float
         longitude in decimals as a string  or float- '-84.39733' West is -ve
-    lat : str
+    lat : str, float
         latitude in decimals as a string or float- '33.775867' North is +ve
-    timeutc: str, float
-        date and time in the format '1984/5/30 16:22:56'. Time is **not** local time, but in UTC
+    timeutc: str
+        date and time in the format '1984/5/30 16:22:56' or in datetime format. Time is **not** local time, but in UTC
 
     Returns
     -------
@@ -259,7 +259,22 @@ def sunset_utc(lat, lon, timeutc):
 
 
 def local2utc(thetime, tz, dst=False):
-    """convert local time to utc time"""
+    """Convert  local time to UTC time
+
+    Parameters
+    ----------
+    thetime: str
+        The local date and time in the format '1984/5/30 16:22:56'.
+    tz: float
+        Timezone. West is -ve
+    dst: Boolean
+        dst=True means the local time is daylight savings time. The default is dst=False
+
+    Returns
+    -------
+    datetime.datetime
+        Returns the UTC time in datetime format
+    """  # noqa: E501
     if dst:
         tz += 1
     dt = thetime - datetime.timedelta(hours=tz)
@@ -267,25 +282,88 @@ def local2utc(thetime, tz, dst=False):
     return timeutc
 
 
-def utc2local(thetime, tz, dst=False):
-    """convert utc time to local"""
-    thetime = datetime.datetime.strptime(thetime, '%Y/%m/%d %H:%M:%S')
+def utc2local(timeutc, tz, dst=False):
+    """Convert  UTC time to local time
+
+    Parameters
+    ----------
+    timeutc: str
+        The UTC date and time in the format '1984/5/30 16:22:56'.
+    tz: float
+        Timezone. West is -ve
+    dst: Boolean
+        dst=True means the local time is daylight savings time. The default is dst=False
+
+    Returns
+    -------
+    datetime.datetime
+        Returns the local time in datetime format
+    """  # noqa: E501
+    timeutc = datetime.datetime.strptime(timeutc, '%Y/%m/%d %H:%M:%S')
     if dst:
         tz += 1
-    return thetime + datetime.timedelta(hours=tz)
+    return timeutc + datetime.timedelta(hours=tz)
 
 
 def sunrise(thedate, lat, lon, tz, dst=False):
-    """Calculates sunset in local time.
-    Given lat, lon and date in datetime format"""
+    """Calculates sunrise in local time. given lat, lon and date-time in UTC
+
+    The setting time matches the the ones given by the US Navy in their Astronomical Almanac.
+    For further detail see:
+    http://rhodesmill.org/pyephem/rise-set.html#
+
+    Parameters
+    ----------
+    thedate: datetime.datetime
+        Date and time in the datetime format. The time can be anytime in the day
+    lon : str, float
+        longitude in decimals as a string or float - '-84.39733' West is -ve
+    lat : str, float
+        latitude in decimals as a string or float- '33.775867' North is +ve
+    tz: float
+        Timezone. West is -ve
+    dst: Boolean
+        dst=True means the local time is daylight savings time. The default is dst=False
+
+    Returns
+    -------
+    datetime.datetime
+        Returns the sunrise in the datetime format
+
+    """  # noqa: E501
     lat, lon = str(lat), str(lon)
     thedate = thedate.replace(hour=12)  # set the time to midday
     timeutc = local2utc(thedate, tz, dst)
     utcrise = sunrise_utc(lat, lon, timeutc)
     return utc2local(utcrise, tz, dst)
 
+
 def sunset(thedate, lat, lon, tz, dst=False):
-    """calculates the sunrise in local time"""
+    """Calculates sunset in local time. given lat, lon and date-time in UTC
+
+    The setting time matches the the ones given by the US Navy in their Astronomical Almanac.
+    For further detail see:
+    http://rhodesmill.org/pyephem/rise-set.html#
+
+    Parameters
+    ----------
+    thedate: datetime.datetime
+        Date and time in the datetime format. The time can be anytime in the day
+    lon : str, float
+        longitude in decimals as a string or float - '-84.39733' West is -ve
+    lat : str, float
+        latitude in decimals as a string or float- '33.775867' North is +ve
+    tz: float
+        Timezone. West is -ve
+    dst: Boolean
+        dst=True means the local time is daylight savings time. The default is dst=False
+
+    Returns
+    -------
+    datetime.datetime
+        Returns the sunset in the datetime format
+
+    """  # noqa: E501
     lat, lon = str(lat), str(lon)
     thedate = thedate.replace(hour=12)  # set the time to midday
     timeutc = local2utc(thedate, tz, dst)
