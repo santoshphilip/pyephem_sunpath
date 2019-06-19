@@ -22,6 +22,8 @@ pyephem_sunpath
 
 Calculate sunpath using pyephem
 
+*Note:* Pyephem has been depreciated. See https://rhodesmill.org/pyephem/. A good alternate is skyfield https://rhodesmill.org/skyfield/
+
 
 * Free software: GNU Lesser Public License v3
 * Documentation: https://pyephem-sunpath.readthedocs.io.
