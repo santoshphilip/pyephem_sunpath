@@ -23,6 +23,8 @@ from __future__ import print_function
 import datetime
 from pyephem_sunpath import sunpath
 from tests.pytest_helpers import _almostequal
+import datetime
+
 
 
 def test_sunpos_utc():
@@ -38,8 +40,11 @@ def test_sunpos_utc():
         # lon, lat, timeUTC, expected
     )
     for lon, lat, timeUTC, expected in data:
-        result = sunpath.sunpos_utc(lon, lat, timeUTC)
-        assert result == expected
+        timeUTC = datetime.datetime.strptime(timeUTC, '%Y/%m/%d %H:%M:%S')
+        timeUTC = timeUTC.timetuple()[0:6]
+        result = sunpath.sunpos_utc(float(lon), float(lat), timeUTC)
+        for rval, expval in zip(result, expected):
+            assert _almostequal(rval, expval)
 
 
 def test__calc_xyz():

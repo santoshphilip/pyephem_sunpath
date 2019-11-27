@@ -11,11 +11,13 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['pyephem>=3.7.6.0']
+requirements = ['pyephem>=3.7.6.0', 'skyfield']
 
 setup_requirements = ['pytest-runner', ]
 
 test_requirements = ['pytest', ]
+
+package_data = {'pyephem_sunpath':["de421.bsp"]}
 
 setup(
     author="Santosh Philip",
@@ -40,6 +42,7 @@ setup(
     keywords='pyephem_sunpath',
     name='pyephem_sunpath',
     packages=find_packages(include=['pyephem_sunpath']),
+    package_data=package_data,
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,

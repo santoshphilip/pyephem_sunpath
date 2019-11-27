@@ -24,6 +24,12 @@ from __future__ import print_function
 import ephem
 import math
 import datetime
+import os
+from skyfield.api import load_file, Topos, load
+
+planets = load_file(os.path.dirname(__file__) + '/de421.bsp')
+sun, earth = planets['sun'], planets['earth']
+
 
 
 # from
@@ -35,12 +41,12 @@ def sunpos_utc(lon, lat, timeutc):
 
     Parameters
     ----------
-    lon : str, float
+    lon : float
         longitude in decimals as a string  or float- '-84.39733' West is -ve
-    lat : str, float
+    lat : float
         latitude in decimals as a string or float- '33.775867' North is +ve
-    timeutc: str
-        date and time in the format '1984/5/30 16:22:56' or in datetime format. Time is **not** local time, but in UTC
+    timeutc: tuple[float]
+        date and time in the format (year, month, day, hr, min, sec) up to precision required. Time is **not** local time, but in UTC
 
     Returns
     -------
@@ -49,12 +55,12 @@ def sunpos_utc(lon, lat, timeutc):
         where altitude and azimuth in degrees - (70.14421911552256, 122.1906772325591)
 
     """  # noqa: E501
-    someplace = ephem.Observer()
-    someplace.lon, someplace.lat = str(lon), str(lat)
-    someplace.date = timeutc
-    sun = ephem.Sun()
-    sun.compute(someplace)
-    return math.degrees(sun.alt), math.degrees(sun.az)
+    loc = earth + Topos(lat, lon)
+    ts = load.timescale(builtin=True)
+    astro = loc.at(ts.utc(*timeutc)).observe(sun)
+    app = astro.apparent()
+    alt, az, _ = app.altaz('standard')
+    return math.degrees(alt.radians), math.degrees(az.radians)
 
 
 def _calc_xyz(alt, az):
@@ -108,8 +114,8 @@ def sunpos_radiance(thetime, lat, lon, mer, year=2018, dst=False):
     if dst:
         tz -= 1
     dt = datetime.datetime(year, * thetime) + datetime.timedelta(hours=tz)
-    timeutc = dt.strftime('%Y/%m/%d %H:%M:%S')
-    alt, azm = sunpos_utc(str(-lon), str(lat), timeutc)
+    timeutc = dt.timetuple()[0:6]
+    alt, azm = sunpos_utc(-lon, lat, timeutc)
     azm = azm - 180
     return alt, azm
 
@@ -144,13 +150,7 @@ def sunpos_radiancexyz(thetime, lat, lon, mer, year=2018, dst=False):
     (float, float, float)
         Sun position as the (x, y, z) of a unit vector pointing from the location to the sun
     """  # noqa: E501
-    tz = mer / 15.
-    if dst:
-        tz -= 1
-    dt = datetime.datetime(year, * thetime) + datetime.timedelta(hours=tz)
-    timeutc = dt.strftime('%Y/%m/%d %H:%M:%S')
-    alt, azm = sunpos_utc(str(-lon), str(lat), timeutc)
-    azm = azm - 180
+    alt, azm = sunpos_radiance(thetime, lat, lon, mer, year, dst)
     return _calc_xyz(alt, azm)
 
 
@@ -183,8 +183,11 @@ def sunpos(thetime, lat, lon, tz, dst=False):
         - example (70.14421911552256, 122.1906772325591)
         - if the sun is below the horizon, the altitude will be -ve
     """  # noqa: E501
-    timeutc = local2utc(thetime, tz, dst=dst)
-    alt, azm = sunpos_utc(str(lon), str(lat), timeutc)
+    if dst:
+        tz += 1
+    dt = thetime - datetime.timedelta(hours=tz)
+    timeutc = dt.timetuple()[0:6]
+    alt, azm = sunpos_utc(lon, lat, timeutc)
     return alt, azm
 
 
