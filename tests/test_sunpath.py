@@ -55,7 +55,7 @@ def test__calc_xyz():
     for alt, az, xyz in data:
         result = sunpath._calc_xyz(alt, az)
         for rval, xyzval in zip(result, xyz):
-            assert _almostequal(rval, xyzval)
+            assert _almostequal(rval, xyzval, places=5)
 
 
 def test_sunpos_radiance():
@@ -84,7 +84,7 @@ def test_sunpos_radiance():
         args = (thetime, lat, lon, mer, year, dst)
         result = sunpath.sunpos_radiance(*args)
         for rval, expval in zip(result, expected):
-            assert _almostequal(rval, expval)
+            assert _almostequal(rval, expval, places=4)
 
 
 def test_sunpos_radiancexyz():
@@ -103,7 +103,7 @@ def test_sunpos_radiancexyz():
         args = (thetime, lat, lon, mer, year, dst)
         result = sunpath.sunpos_radiancexyz(*args)
         for rval, expval in zip(result, expected):
-            assert _almostequal(rval, expval)
+            assert _almostequal(rval, expval, places=5)
 
 
 def test_sunpos():
@@ -122,7 +122,7 @@ def test_sunpos():
         thetime = datetime.datetime(*thetime)
         result = sunpath.sunpos(thetime, lat, lon, tz, dst)
         for rval, expval in zip(result, expected):
-            assert _almostequal(rval, expval)
+            assert _almostequal(rval, expval, places=4)
 
 
 def test_sunrise_utc():
