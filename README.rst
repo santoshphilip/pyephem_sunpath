@@ -11,7 +11,6 @@ pyephem_sunpath
         :alt: Documentation Status
 
 
-update 3
 
 Calculate sunpath using pyephem
 
