@@ -18,7 +18,7 @@ pyephem_sunpath
      :target: https://pyup.io/repos/github/santoshphilip/pyephem_sunpath/
      :alt: Updates
 
-update 1
+update 2
 
 Calculate sunpath using pyephem
 
