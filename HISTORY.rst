@@ -2,6 +2,16 @@
 History
 =======
 
+0.2.4 Mon Jan 19 10:48:58 2026 -0800
+------------------------------------
+
+fixed issue #9
+
+:Problem: Need to move to using uv
+:Solution: Transitioned to uv
+
+
+
 0.2.1 (2018-05-29)
 ------------------
 
