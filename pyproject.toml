@@ -1,12 +1,27 @@
 [project]
 name = "pyephem-sunpath"
 version = "0.2.3"
-description = "Add your description here"
+description = "Calculate sunpath using pyephem"
 readme = "README.rst"
 requires-python = ">=3.9"
-dependencies = [
-    "pyephem>=9.99",
+authors = [
+  { name = "Santosh Philip", email = "santosh_philip@nomail.com" }
 ]
+license = { text = "LGPLv3" }
+keywords = ["pyephem-sunpath", "pyephem_sunpath", "sunpath" , "solar"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+  "Natural Language :: English",
+]
+dependencies = ["pyephem>=9.99"]
+
+[project.urls]
+Homepage =   "https://github.com/santoshphilip/pyephem_sunpath"
+Repository = "https://github.com/santoshphilip/pyephem_sunpath"
+Issues = "https://github.com/santoshphilip/pyephem_sunpath/issues"
 
 [dependency-groups]
 dev = [
