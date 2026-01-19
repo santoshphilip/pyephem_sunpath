@@ -585,8 +585,8 @@ sdist = { url = "https://files.pythonhosted.org/packages/8e/02/1eade827452880961
 
 [[package]]
 name = "pyephem-sunpath"
-version = "0.2.3"
-source = { virtual = "." }
+version = "0.2.4"
+source = { editable = "." }
 dependencies = [
     { name = "pyephem" },
 ]

@@ -1,6 +1,6 @@
 [project]
 name = "pyephem-sunpath"
-version = "0.2.3"
+version = "0.2.4"
 description = "Calculate sunpath using pyephem"
 readme = "README.rst"
 requires-python = ">=3.9"
